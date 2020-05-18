@@ -7,6 +7,8 @@ public class Car {
     private String carType;
     private String price;
     private String carSeries;
+    //车辆库存
+    private int carInventory;
 
     public int getId() {
         return id;
@@ -57,5 +59,13 @@ public class Car {
                 ", price='" + price + '\'' +
                 ", carSeries='" + carSeries + '\'' +
                 '}';
+    }
+
+    public int getCarInventory() {
+        return carInventory;
+    }
+
+    public void setCarInventory(int carInventory) {
+        this.carInventory = carInventory;
     }
 }

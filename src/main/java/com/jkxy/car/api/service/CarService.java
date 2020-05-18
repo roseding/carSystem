@@ -1,6 +1,7 @@
 package com.jkxy.car.api.service;
 
 import com.jkxy.car.api.pojo.Car;
+import com.jkxy.car.api.pojo.Page;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface CarService {
     void updateById(Car car);
 
     void insertCar(Car car);
+
+    List<Car> findByKeyWordByPage(Page keyWordPage);
 }

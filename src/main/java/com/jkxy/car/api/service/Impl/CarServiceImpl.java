@@ -1,7 +1,9 @@
 package com.jkxy.car.api.service.Impl;
 
+
 import com.jkxy.car.api.dao.CarDao;
 import com.jkxy.car.api.pojo.Car;
+import com.jkxy.car.api.pojo.Page;
 import com.jkxy.car.api.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +44,14 @@ public class CarServiceImpl implements CarService {
     @Override
     public void insertCar(Car car) {
         carDao.insertCar(car);
+    }
+
+    @Override
+    public List<Car> findByKeyWordByPage(Page keyWordPage) {
+        int startRow = 0;
+        if(keyWordPage.getPageNum() > 1){
+            startRow = (keyWordPage.getPageNum()-1) * keyWordPage.getPageSize();
+        }
+        return carDao.findByCarNameFuzz(keyWordPage.getKeyWord(),startRow,keyWordPage.getPageSize());
     }
 }

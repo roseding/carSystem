@@ -1,11 +1,13 @@
 package com.jkxy.car.api.controller;
 
 import com.jkxy.car.api.pojo.Car;
+import com.jkxy.car.api.pojo.Page;
 import com.jkxy.car.api.service.CarService;
 import com.jkxy.car.api.utils.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -84,5 +86,15 @@ public class CarController {
     public JSONResult insertCar(Car car) {
         carService.insertCar(car);
         return JSONResult.ok();
+    }
+
+    /**
+     * 对车辆进行模糊查询
+     */
+    @PostMapping("/findByCarNameByPage")
+    public JSONResult findByKeyWordByPage(Page keyWordPage){
+        List<Car> carsList = new ArrayList<Car>();
+        carsList = carService.findByKeyWordByPage(keyWordPage);
+        return JSONResult.ok(carsList);
     }
 }
